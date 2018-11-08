@@ -38,7 +38,9 @@ namespace Canardstein
         private Texture[] gunTextures = new Texture[3];
         private int gunFrame = 0;
         private float gunNextFrame = 0.1f;  
-        private ISoundEngine audio;
+        public ISoundEngine audio;
+        //joueur
+        public int lifes = 100;
         //enemis
         private List<Thing> things = new List<Thing>();
         public Texture[] enemyTextures = new Texture[7];

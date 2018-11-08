@@ -7,11 +7,14 @@ using IrrlichtLime.Core;
 using IrrlichtLime.Scene;
 using IrrlichtLime.Video;
 using IrrKlang;
+using log4net;
 
 namespace Canardstein
 {
     public class Game
     {
+        private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         //lance le jeu
         private static void Main(string[] args) { Game jeu = new Game(); }
 
@@ -45,6 +48,7 @@ namespace Canardstein
 
         public Game()
         {
+            Logger.Info("Initialisation du jeu");
             //Definit la fenetre direct3D
             this.device = IrrlichtDevice.CreateDevice(
                 DriverType.Direct3D9,
@@ -100,6 +104,7 @@ namespace Canardstein
             this.device.CursorControl.Visible = false;
 
             AddThings<Enemy>(3, 3);
+            Logger.Info("Jeu initialisé");
             while (this.device.Run())
             {
                 //temps écoulé en s depuis la dernière frame
@@ -292,9 +297,13 @@ namespace Canardstein
                 {
                     if (this.things[j].Position.GetDistanceFrom(pos) < 0.25f)
                     {
+                        Logger.Debug("Enemmi " + j.ToString() + " touché");
                         this.things[j].Damage(5);
                         //pas d'autre domages deriere cet enemi
                         return;
+                    } else
+                    {
+                        Logger.Debug("Enemmi " + j.ToString() + " raté (" + this.things[j].Position.GetDistanceFrom(pos).ToString() + ")");
                     }
                     pos += speed;
                 }

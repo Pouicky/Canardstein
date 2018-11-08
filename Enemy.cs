@@ -9,12 +9,14 @@ using IrrlichtLime.Core;
 using IrrlichtLime.Scene;
 using IrrlichtLime.Video;
 using IrrKlang;
-
+using log4net;
 
 namespace Canardstein
 {
     class Enemy:Thing
     {
+        private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private int frame = 0;
         private float frameInterval = 0.15f;
         private int lifes = 10;
@@ -59,6 +61,7 @@ namespace Canardstein
         public override void Damage(int damage)
         {
             this.lifes -= damage;
+            Logger.Debug("- Points de vie restants : " + this.lifes.ToString());
         }
     }
 }

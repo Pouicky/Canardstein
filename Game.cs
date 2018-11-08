@@ -287,8 +287,8 @@ namespace Canardstein
             float posY = Device.SceneManager.ActiveCamera.Position.Z;
             Vector2Df pos = new Vector2Df(posX, posY);
             float speedX = this.vectorUp.X;
-            float speedY = this.vectorUp.Z + 0.1f;
-            Vector2Df speed = new Vector2Df(speedX, speedY);
+            float speedY = this.vectorUp.Z;
+            Vector2Df speed = new Vector2Df(speedX, speedY) * 0.1f;
             Console.WriteLine(pos);
             Console.WriteLine(speed);
             for (int i = 0; i < 128; i++)
@@ -297,13 +297,13 @@ namespace Canardstein
                 {
                     if (this.things[j].Position.GetDistanceFrom(pos) < 0.25f)
                     {
-                        Logger.Debug("Enemmi " + j.ToString() + " touché");
+                        Logger.Debug(i.ToString() + " Enemmi " + j.ToString() + " touché");
                         this.things[j].Damage(5);
                         //pas d'autre domages deriere cet enemi
                         return;
                     } else
                     {
-                        Logger.Debug("Enemmi " + j.ToString() + " raté (" + this.things[j].Position.GetDistanceFrom(pos).ToString() + ")");
+                        Logger.Debug(i.ToString() + " Enemmi " + j.ToString() + " raté (" + this.things[j].Position.GetDistanceFrom(pos).ToString() + ")");
                     }
                     pos += speed;
                 }

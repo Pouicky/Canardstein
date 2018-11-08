@@ -2,7 +2,7 @@
 # Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
 ################################################################################
 
-/bin/Debug/lib
 /bin
-/obj/x86/Debug
-/.vs/Canardstein/v15/Server/sqlite3
+/obj
+/.vs
+*.user
